@@ -13,7 +13,7 @@ def preprocess(img_path):
         raise ValueError(f"无法读取图片：{img_path}")
     img = cv2.resize(img, (28, 28))
     img = img.astype("float32") / 255.0
-    img = 1.0 - img
+    img = 1.0 - img # 白底黑字删掉这行
     return img.reshape(1, 28, 28, 1)
 
 # 3. 批量推理
@@ -35,7 +35,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
-
+'''
 # 1. 创建输出目录
 out_dir = Path("test_processed")
 out_dir.mkdir(exist_ok=True)
@@ -55,10 +55,9 @@ for img_path in sorted(test_folder.glob("*")):
     img = cv2.resize(img, (28, 28))
     img = img.astype("float32") / 255.0
 
-    # 黑底白字：如果是白底黑字，下一行取消注释即可
     img = 1.0 - img
 
-    # 4. 保存预处理后的图片（放大到 280×280 便于肉眼查看）
+    # 4. 保存预处理后的图片（放大到 280*280 便于肉眼查看）
     save_name = out_dir / f"{img_path.stem}_proc.png"
     cv2.imwrite(str(save_name), (img * 255).astype(np.uint8))
 
@@ -66,4 +65,4 @@ for img_path in sorted(test_folder.glob("*")):
     #pred = np.argmax(model.predict(img.reshape(1, 28, 28, 1)))
     #print(f"{img_path.name} -> 识别结果: {pred}")
 
-print(f"所有预处理图片已保存到 {out_dir.resolve()}")
+print(f"所有预处理图片已保存到 {out_dir.resolve()}")'''
